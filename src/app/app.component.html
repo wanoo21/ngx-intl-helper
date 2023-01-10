@@ -1,1 +1,7 @@
-<ngx-intl-helper-nx-welcome></ngx-intl-helper-nx-welcome>
+<section class="max-w-screen-xl mx-auto">
+  <h2>Display names Pipe</h2>
+  <p>{{'RON' | displayNames: 'currency' | async}}</p>
+
+  <h2>List Format</h2>
+  <p>{{['1', '2', '3'] | listFormat | async }}</p>
+</section>

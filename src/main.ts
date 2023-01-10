@@ -1,7 +1,10 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from "@angular/platform-browser";
+import { LOCALE_ID } from "@angular/core";
 
-import { AppModule } from './app/app.module';
+import { NgxIntlHelperComponent } from "./app/app.component";
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+bootstrapApplication(NgxIntlHelperComponent, {
+  providers: [
+    { provide: LOCALE_ID, useValue: "ro-MD" }
+  ]}
+).catch(err => console.error(err));
