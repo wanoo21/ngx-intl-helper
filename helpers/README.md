@@ -19,9 +19,9 @@ I have in plan to include [@formatjs polyfills](https://formatjs.io/docs/polyfil
 * DisplayNames - [ECMA-402](https://tc39.es/ecma402/#sec-intl-displaynames-constructor) - `displayNames` pipe.
 * ListFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-listformat-constructor) - `listFormat` pipe.
 * RelativeTimeFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-relativetimeformat-constructor) - `relativeTimeFormat` pipe.
+* PluralRules  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-pluralrules-constructor) - `pluralRules` pipe.
 
 **Features that are not supported, but are planned:**
-* PluralRules  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-pluralrules-constructor)
 * Collator  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-collator-constructor)
 * Segmenter  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-segmenter-constructor)
 * getCanonicalLocales()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.getcanonicallocales)
