@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 import { AsyncPipe } from "@angular/common";
 
 import {
   DisplayNamesPipe,
-  ListFormatPipe,
+  ListFormatPipe, PluralRulesPipe,
   provideDisplayNamesOptions,
-  provideListFormatOptions
+  provideListFormatOptions,
+  provideRelativeTimeFormatOptions,
+  RelativeTimeFormatPipe
 } from "@wanoo21/ngx-intl-helper";
 
 @Component({
@@ -15,14 +17,17 @@ import {
   standalone: true,
   providers: [
     provideDisplayNamesOptions({ style: "long" }),
-    provideListFormatOptions({ style: 'long', type: 'disjunction' })
+    provideListFormatOptions({ style: "short" }),
+    provideRelativeTimeFormatOptions({ numeric: "auto" })
   ],
   imports: [
     DisplayNamesPipe,
     AsyncPipe,
-    ListFormatPipe
+    ListFormatPipe,
+    RelativeTimeFormatPipe,
+    PluralRulesPipe
   ]
 })
 export class NgxIntlHelperComponent {
-  locale = 'en';
+  locale = "en";
 }
