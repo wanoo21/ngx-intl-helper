@@ -18,9 +18,9 @@ I have in plan to include [@formatjs polyfills](https://formatjs.io/docs/polyfil
 **Supported Intl API features:**
 * DisplayNames - [ECMA-402](https://tc39.es/ecma402/#sec-intl-displaynames-constructor) - `displayNames` pipe.
 * ListFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-listformat-constructor) - `listFormat` pipe.
+* RelativeTimeFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-relativetimeformat-constructor) - `relativeTimeFormat` pipe.
 
 **Features that are not supported, but are planned:**
-* RelativeTimeFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-relativetimeformat-constructor)
 * PluralRules  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-pluralrules-constructor)
 * Collator  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-collator-constructor)
 * Segmenter  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-segmenter-constructor)
@@ -72,10 +72,10 @@ import { DisplayNamesPipe, provideDisplayNamesOptions } from '@wanoo21/ngx-intl-
   template: `
     <div>
       <p>DisplayNames pipe</p>
-      <p>DisplayNames: {{ 'en' | displayNames: 'language' }}</p>
-      <p>DisplayNames: {{ 'en' | displayNames: 'region' }}</p>
-      <p>DisplayNames: {{ 'en' | displayNames: 'script' }}</p>
-      <p>DisplayNames: {{ 'en' | displayNames: 'currency' }}</p>
+      <p>DisplayNames: {{ 'en' | displayNames: 'language' | async }}</p>
+      <p>DisplayNames: {{ 'en' | displayNames: 'region' | async }}</p>
+      <p>DisplayNames: {{ 'en' | displayNames: 'script' | async }}</p>
+      <p>DisplayNames: {{ 'en' | displayNames: 'currency' | async }}</p>
     </div>
   `
 })
@@ -111,7 +111,7 @@ import { ListFormatPipe, provideListFormatOptions } from '@wanoo21/ngx-intl-help
   template: `
     <div>
       <p>ListFormat pipe</p>
-      <p>ListFormat: {{ ['en', 'fr', 'de'] | listFormat }}</p>
+      <p>ListFormat: {{ ['en', 'fr', 'de'] | listFormat | async }}</p>
     </div>
   `
 })

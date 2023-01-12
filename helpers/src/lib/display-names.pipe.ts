@@ -22,17 +22,40 @@ const DISPLAY_NAMES_INITIALS = new InjectionToken<DisplayNamesOptions>("DISPLAY_
  * Provides a way to inject the options for the DisplayNamesPipe.
  *
  * @param options The options to use for the DisplayNamesPipe.
- * @returns The options to use for the DisplayNamesPipe.
+ * @returns The provider for the DisplayNamesPipe.
  */
 export function provideDisplayNamesOptions(options: DisplayNamesOptions): Provider {
   return { provide: DISPLAY_NAMES_INITIALS, useValue: { ...defaultOptions, ...options } };
 }
 
 /**
- * This proposal is intended to provide translation for strings of particular items which are application-independent,
- * rather than translation for all kinds of strings.
+ * This pipe is a wrapper around the [Intl.DisplayNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DisplayNames) API.
  *
- * @see {@link https://github.com/tc39/proposal-intl-displaynames} for more information.
+ * Check out the [DisplayNamesPipe](https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md#displaynames-pipe) documentation for more information.
+ *
+ * @example
+ * ```typescript
+ * import {Component} from '@angular/core';
+ * import {provideDisplayNamesOptions, DisplayNamesPipe} from '@wanoo21/ngx-intl-helper';
+ *
+ * @Component({
+ *  selector: 'app',
+ *  standalone: true,
+ *  template: `
+ *    <p>{{ 'en-US' | displayNames: 'language' | async }}</p> // -> American English
+ *    <p>{{ 'US' | displayNames: 'region' | async }}</p> // -> United States
+ *  `,
+ *  providers: [
+ *    // Optional, default options are {style: 'short', localeMatcher: 'lookup', fallback: 'code'}
+ *    provideDisplayNamesOptions({style: 'long'})
+ *  ],
+ *  imports: [
+ *    DisplayNamesPipe
+*   ]
+ * })
+ * export class AppComponent {}
+ * ```
+ * @returns The display name of the code or the code as it is in case of errors.
  */
 @Pipe({
   name: "displayNames",
@@ -48,7 +71,6 @@ export class DisplayNamesPipe implements PipeTransform {
    * @param code The code to transform.
    * @param type DisplayNamesType to use.
    * @param locale Optional. The locale to use for the transformation. Defaults to LOCALE_ID.
-   *
    * @returns The name of the given code in the given locale or the code itself if the name could not be found.
    */
   async transform(code: string, type: Intl.DisplayNamesType, locale?: string | string[]): Promise<ReturnType<Intl.DisplayNames["of"]>> {
