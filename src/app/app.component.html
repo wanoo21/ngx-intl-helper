@@ -12,4 +12,10 @@
 
   <h2 class="font-bold mt-2">Plural Rules</h2>
   <p>{{18 | pluralRules | async }}</p>
+
+  <h2 class="font-bold mt-2">Canonical Locales</h2>
+  <p>{{['en-md', 'ro-md'] | canonicalLocales | async | json}}</p>
+
+  <h2 class="font-bold mt-2">Supported values</h2>
+  <p>{{'currency' | supportedValuesOf | async | slice: 0: 10 | json}}</p>
 </section>

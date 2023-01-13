@@ -1,13 +1,14 @@
 import { Component } from "@angular/core";
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, JsonPipe, SlicePipe } from "@angular/common";
 
 import {
+  CanonicalLocalesPipe,
   DisplayNamesPipe,
   ListFormatPipe, PluralRulesPipe,
   provideDisplayNamesOptions,
   provideListFormatOptions,
   provideRelativeTimeFormatOptions,
-  RelativeTimeFormatPipe
+  RelativeTimeFormatPipe, SupportedValuesOf
 } from "@wanoo21/ngx-intl-helper";
 
 @Component({
@@ -25,7 +26,11 @@ import {
     AsyncPipe,
     ListFormatPipe,
     RelativeTimeFormatPipe,
-    PluralRulesPipe
+    PluralRulesPipe,
+    CanonicalLocalesPipe,
+    SupportedValuesOf,
+    JsonPipe,
+    SlicePipe
   ]
 })
 export class NgxIntlHelperComponent {

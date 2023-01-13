@@ -20,12 +20,8 @@ I have in plan to include [@formatjs polyfills](https://formatjs.io/docs/polyfil
 * ListFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-listformat-constructor) - `listFormat` pipe.
 * RelativeTimeFormat - [ECMA-402](https://tc39.es/ecma402/#sec-intl-relativetimeformat-constructor) - `relativeTimeFormat` pipe.
 * PluralRules  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-pluralrules-constructor) - `pluralRules` pipe.
-
-**Features that are not supported, but are planned:**
-* Collator  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-collator-constructor)
-* Segmenter  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-segmenter-constructor)
-* getCanonicalLocales()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.getcanonicallocales)
-* supportedValuesOf()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.supportedvaluesof)
+* getCanonicalLocales()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.getcanonicallocales) - `canonicalLocales` pipe.
+* supportedValuesOf()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.supportedvaluesof) - `supportedValuesOf` pipe.
 
 ## Installation
 
