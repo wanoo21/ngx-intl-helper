@@ -7,7 +7,7 @@ but rather a collection of helpers that can extend the functionality.
 
 Default locale is `en-US` and can be changed by providing the `LOCALE_ID` token, or sent as parameter to the pipe.
 
-The pipes will try to use the `Intl` API, and if it's not available, it will fallback to the different approaches, depending on the pipe.
+The pipes will try to use the `Intl` API, and if it's not available, it will fall back to the different approaches, depending on the pipe.
 For example, the `DisplayNamesPipe` will send the value of code is being sent to the pipe, while the `ListFormatPipe` will send the value of the array as string.
 
 Keep in mind that the `Intl` API is not supported in all browsers, and the fallbacks are not always the same. 
@@ -22,6 +22,21 @@ I have in plan to include [@formatjs polyfills](https://formatjs.io/docs/polyfil
 * PluralRules  - [ECMA-402](https://tc39.es/ecma402/#sec-intl-pluralrules-constructor) - `pluralRules` pipe.
 * getCanonicalLocales()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.getcanonicallocales) - `canonicalLocales` pipe.
 * supportedValuesOf()  - [ECMA-402](https://tc39.es/ecma402/#sec-intl.supportedvaluesof) - `supportedValuesOf` pipe.
+
+## Why I decided to wrap all pipes into async functions?
+
+This is ahead of time solution to lazy load the [Intl API polyfills](https://formatjs.io/docs/polyfills), depending on the pipe that is being used. This way, the polyfills are not loaded if they are not needed.
+This is not a perfect solution, but it's the best I could come up with for now. If you have a better idea, **please let me know**.
+
+I might remove this in the future, if I find a better solution on how to load the polyfills or **weather to load the polyfills or not**.
+
+## Maybe some breaking (or not) changes in the future
+
+* Remove `async` from pipes (depending on the polyfills' solution).
+* Add configuration to load polyfills or not.
+* Add pipe configurations as argument (for example, `{{ 1 | pluralRules: { type: 'ordinal' } }}`).
+* Add support for `Intl.DateTimeFormat` (maybe).
+* Add some other global configuration (maybe).
 
 ## Installation
 
@@ -43,6 +58,8 @@ import { NgxIntlHelperModule } from '@wanoo21/ngx-intl-helper';
 })
 ```
 Or import each pipe individually in standalone components.
+
+## Supported pipes
 
 ### DisplayNames Pipe
 
@@ -118,6 +135,136 @@ export class AppComponent {
 If an error occurs, the pipe will return the value of the array as string:
 
 `{{ ['en', 'fr', 'de'] | listFormat }}` will return `en, fr, de`.
+
+### RelativeTimeFormat Pipe
+
+RelativeTimeFormat pipe is a wrapper around the [Intl.RelativeTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat) API.
+
+Import the pipe in your component as `RelativeTimeFormatPipe`:
+
+```typescript
+import { Component } from '@angular/core';
+import { RelativeTimeFormatPipe, provideRelativeTimeFormatOptions } from '@wanoo21/ngx-intl-helper';
+
+@Component({
+  standalone: true,
+  imports: [
+    RelativeTimeFormatPipe // Import the pipe as standalone
+  ],
+  providers: [
+    provideRelativeTimeFormatOptions({ // Rewrite default options for the pipe
+      numeric: 'auto',
+      style: 'long'
+    })
+  ],
+  template: `
+    <div>
+      <p>RelativeTimeFormat pipe</p>
+      <p>RelativeTimeFormat: {{ 1 | relativeTimeFormat: 'day' | async }}</p>
+    </div>
+  `
+})
+export class AppComponent {
+}
+```
+if an error occurs, the pipe will return the value that was sent to it:
+
+{{ 1 | relativeTimeFormat: 'day' }}` will return `1`.
+
+### PluralRules Pipe
+
+PluralRules pipe is a wrapper around the [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules) API.
+
+Import the pipe in your component as `PluralRulesPipe`:
+
+```typescript
+import { Component } from '@angular/core';
+import { PluralRulesPipe, providePluralRulesOptions } from '@wanoo21/ngx-intl-helper';
+
+@Component({
+  standalone: true,
+  imports: [
+    PluralRulesPipe // Import the pipe as standalone
+  ],
+  providers: [
+    providePluralRulesOptions({ // Rewrite default options for the pipe
+      type: 'ordinal'
+    })
+  ],
+  template: `
+    <div>
+      <p>PluralRules pipe</p>
+      <p>PluralRules: {{ 1 | pluralRules | async }}</p>
+    </div>
+  `
+})
+export class AppComponent {
+}
+```
+
+If an error occurs, the pipe will return the value that was sent to it:
+
+`{{ 1 | pluralRules }}` will return `1`.
+
+### CanonicalLocales Pipe
+
+CanonicalLocales pipe is a wrapper around the [Intl.getCanonicalLocales](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/getCanonicalLocales) API.
+
+Import the pipe in your component as `CanonicalLocalesPipe`:
+
+```typescript
+import { Component } from '@angular/core';
+import { CanonicalLocalesPipe } from '@wanoo21/ngx-intl-helper';
+
+@Component({
+  standalone: true,
+  imports: [
+    CanonicalLocalesPipe // Import the pipe as standalone
+  ],
+  template: `
+    <div>
+      <p>CanonicalLocales pipe</p>
+      <p>CanonicalLocales: {{ ['en', 'fr', 'de'] | canonicalLocales | async }}</p>
+    </div>
+  `
+})
+export class AppComponent {
+}
+```
+
+If an error occurs, the pipe will return an empty array:
+
+`{{ ['en', 'fr', 'de'] | canonicalLocales }}` will return `[]`.
+
+### SupportedValuesOf Pipe
+
+SupportedValuesOf pipe is a wrapper around the [Intl.supportedValuesOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/supportedValuesOf) API.
+
+Import the pipe in your component as `SupportedValuesOfPipe`:
+
+```typescript
+import { Component } from '@angular/core';
+import { SupportedValuesOfPipe } from '@wanoo21/ngx-intl-helper';
+
+@Component({
+  standalone: true,
+  imports: [
+    SupportedValuesOfPipe // Import the pipe as standalone
+  ],
+  template: `
+    <div>
+      <p>SupportedValuesOf pipe</p>
+      <p>SupportedValuesOf: {{ 'currency' | supportedValuesOf | async }}</p>
+    </div>
+  `
+})
+export class AppComponent {
+}
+```
+
+If an error occurs, the pipe will return an empty array:
+
+`{{ 'currency' | supportedValuesOf }}` will return `[]`.
 
 ## Contributing
 

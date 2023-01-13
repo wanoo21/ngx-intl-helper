@@ -12,4 +12,4 @@ To build the library, run `npm run build helpers`
 
 ## Contributing
 
-If you want to contribute to this project, please read the [contributing guidelines](/CONTRIBUTING.md).
+If you want to contribute to this project, please read the [contributing guidelines](/helpers/CONTRIBUTING.md).
