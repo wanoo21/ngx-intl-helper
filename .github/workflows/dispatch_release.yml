@@ -6,6 +6,7 @@ on:
       branch:
         description: 'Branch to release'
         required: true
+        type: choice
         default: 'main'
         options:
           - 'main'
@@ -14,6 +15,7 @@ on:
       dry-run:
         description: 'Dry run'
         required: true
+        type: choice
         default: 'false'
         options:
           - 'true'
