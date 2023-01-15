@@ -1,0 +1,50 @@
+name: Dispatch Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to release'
+        required: true
+        default: 'main'
+        options:
+          - 'main'
+          - 'beta'
+          - 'next'
+      dry-run:
+        description: 'Dry run'
+        required: true
+        default: 'false'
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
+          token: ${{ secrets.NPM_TOKEN }}
+          scope: '@wanoo21'
+          always-auth: true
+
+      - name: Build the Library
+        run: |
+          npm ci
+          npx nx run helpers:build
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        id: semantic
+        with:
+          dry_run: ${{ github.event.inputs.dry-run == 'true' }}
+          semantic_version: 20
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
