@@ -12,7 +12,7 @@
     "@semantic-release/git",
     ["@semantic-release/github", { "assets": ["dist/helpers/**"] }]
   ],
-  "repositoryUrl": "https://github.com/wanoo21/ngx-intl-helper",
+  "repositoryUrl": "git@github.com:wanoo21/ngx-intl-helper.git",
   "tagFormat": "v${version}",
   "preset": "angular"
 }

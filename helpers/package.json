@@ -5,7 +5,7 @@
   "homepage": "https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/wanoo21/ngx-intl-helper",
+    "url": "git@github.com:wanoo21/ngx-intl-helper.git",
     "type": "git"
   },
   "peerDependencies": {
