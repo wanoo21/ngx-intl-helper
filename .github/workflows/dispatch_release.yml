@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           registry-url: 'https://registry.npmjs.org'
           token: ${{ secrets.NPM_TOKEN }}
           scope: '@wanoo21'
@@ -42,11 +42,10 @@ jobs:
           npx nx run helpers:build
 
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v3
+        uses: cycjimmy/semantic-release-action@v2
         id: semantic
         with:
           dry_run: ${{ github.event.inputs.dry-run == 'true' }}
-          semantic_version: 20.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
