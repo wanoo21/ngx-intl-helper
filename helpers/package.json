@@ -1,6 +1,13 @@
 {
   "name": "@wanoo21/ngx-intl-helper",
   "version": "0.0.1",
+  "description": "This is a collection of pipes for Angular applications that use the Intl API.",
+  "homepage": "https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/wanoo21/ngx-intl-helper",
+    "type": "git"
+  },
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0"
