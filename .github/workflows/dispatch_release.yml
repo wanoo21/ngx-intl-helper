@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v2
         with:
           node-version: 18
           registry-url: 'https://registry.npmjs.org'
@@ -42,7 +42,7 @@ jobs:
           npx nx run helpers:build
 
       - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v3
         id: semantic
         with:
           dry_run: ${{ github.event.inputs.dry-run == 'true' }}
