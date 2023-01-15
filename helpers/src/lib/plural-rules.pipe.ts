@@ -4,6 +4,8 @@ import { inject, LOCALE_ID, Pipe, PipeTransform } from "@angular/core";
  * This pipe is a wrapper around the [Intl.PluralRules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules) API.
  * It takes a value and returns the plural category for that value.
  *
+ * Check out the [PluralRulesPipe](https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md#pluralrules-pipe) documentation for more information.
+ *
  * @example
  * ```typescript
  * import {Component} from '@angular/core';

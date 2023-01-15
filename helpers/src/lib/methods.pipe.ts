@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 /**
  * This pipe is a wrapper around the [Intl.getCanonicalLocales](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/getCanonicalLocales) method.
  *
- * Check out the [GetCanonicalLocalesPipe](https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md#getcanonicallocales-pipe) documentation for more information.
+ * Check out the [CanonicalLocalesPipe](https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md#canonicallocales-pipe) documentation for more information.
  */
 @Pipe({
   name: "canonicalLocales",
