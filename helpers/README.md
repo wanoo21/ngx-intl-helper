@@ -41,7 +41,7 @@ I might remove this in the future, if I find a better solution on how to load th
 ## Installation
 
 ```bash
-npm i @wanoo21/ngx-intl-helper // not yet published
+npm i @wanoo21/ngx-intl-helper
 ```
 
 ## Usage
