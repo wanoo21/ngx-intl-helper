@@ -31,8 +31,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 18
-          registry-url: 'https://registry.npmjs.org'
-          scope: '@wanoo21'
 
       - name: Build the Library
         run: |
