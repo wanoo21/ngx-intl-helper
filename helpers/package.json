@@ -1,6 +1,11 @@
 {
   "name": "@wanoo21/ngx-intl-helper",
   "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "description": "This is a collection of pipes for Angular applications that use the Intl API.",
   "homepage": "https://github.com/wanoo21/ngx-intl-helper/blob/main/helpers/README.md",
   "license": "MIT",
